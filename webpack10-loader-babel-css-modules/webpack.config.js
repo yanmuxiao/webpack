@@ -2,7 +2,7 @@
 
 module.exports = {
 
-  devtool: "eval-source-map",
+  devtool: false,
 
   entry:  __dirname + "/app/main.js",//已多次提及的唯一入口文件
   output: {
@@ -19,6 +19,11 @@ module.exports = {
       {
         test: /\.css/,
         loader: 'style-loader!css-loader?modules'//添加样式，注：感叹号的作用在于使同一文件能够使用不同类型的loader
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'//在webpack的module部分的loaders里进行配置即可
       }
     ]
   },

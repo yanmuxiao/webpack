@@ -1,9 +1,8 @@
 
-var webpack = require('webpack');
 
 module.exports = {
 
-  devtool: "eval-source-map",
+  devtool: false,
 
   entry:  __dirname + "/app/main.js",//已多次提及的唯一入口文件
   output: {
@@ -16,6 +15,10 @@ module.exports = {
       {
         test: /\.json$/,
         loader: "json-loader"//不能只写json,json文件不能有注释
+      },
+      {
+        test: /\.css/,
+        loader: 'style-loader!css-loader'//添加样式，注：感叹号的作用在于使同一文件能够使用不同类型的loader
       },
       {
         test: /\.js$/,
