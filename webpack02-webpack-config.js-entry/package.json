@@ -1,0 +1,13 @@
+{
+  "name": "webpack",
+  "version": "1.0.0",
+  "description": "webpack入门",
+  "main": "index.js",
+  "scripts": {
+  },
+  "author": "Bright",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^2.2.1"
+  }
+}
