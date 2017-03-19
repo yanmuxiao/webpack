@@ -1,10 +1,18 @@
+
+var webpack = require('webpack');
+var path = require('path');
+
 module.exports = {
 
   devtool: "eval-source-map",
 
-  entry:  __dirname + "/app/main.js",//已多次提及的唯一入口文件
+  entry:  [
+    'webpack/hot/dev-server',
+    'webpack-dev-server/client?http://localhost:8099',
+    path.resolve(__dirname, 'app/main.js')
+  ],
   output: {
-    path: __dirname + "/public",//打包后的文件存放的地方
+    path: path.resolve(__dirname, 'build'),
     filename: "bundle.js"//打包后输出文件的文件名
   },
 
