@@ -1,6 +1,7 @@
 
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 
@@ -20,7 +21,8 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader?modules'//添加样式，注：感叹号的作用在于使同一文件能够使用不同类型的loader
+        //loader: 'style-loader!css-loader?modules'//添加样式，注：感叹号的作用在于使同一文件能够使用不同类型的loader
+      	loader: ExtractTextPlugin.extract("css-loader?module" + 'style-loader')
       },
       {
         test: /\.js$/,
@@ -33,6 +35,18 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: __dirname + '/app/index.tmpl.html'
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+    	minimize: true,
+    	compress: {
+    		warnings: false // 去除代码块内的告警语句
+    	}
+    }),
+    new ExtractTextPlugin('style.css'),
+    new webpack.DefinePlugin({
+    	'process.env': {
+	       NODE_ENV: '"production"'
+	   }
     })
   ],
 
